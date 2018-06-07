@@ -28,7 +28,13 @@ class Node {
 
 public:
     Node ( T* data){
-        this->data = data;
+        try {
+            T* new_data = new T(*data);
+            this->data = new_data;
+        }
+        catch (std::bad_alloc&){
+            throw ALLOCATION_ERROR_TREE();
+        }
         this->height = 0;
         this->balanceFactor = 0;
         this->father = nullptr;
@@ -36,11 +42,18 @@ public:
         this->left = nullptr;
     }
 
-    void setData ( T* data){
+    void setData (T* data){
         if (this == nullptr){
             return;
         }
-        this->data = data;
+        delete this->data;
+        try {
+            T* new_data = new T(*data);
+            this->data = new_data;
+        }
+        catch (std::bad_alloc&){
+            throw ALLOCATION_ERROR_TREE();
+        }
     }
 
     void setHeight (const int height){
@@ -324,6 +337,7 @@ public:
                         current->setLeft(nullptr);
                     }
                 }
+                delete (tmp->getData());
                 delete (tmp);
             } else {                                         // has two children
                 Node<T> *min = findMin(current->getRight());
@@ -447,9 +461,10 @@ public:
             current->setLeft(destroyTree(current->getLeft()));
 
         }
-        if (current->getLeft() != nullptr){
+        if (current->getRight() != nullptr){
             current->setRight(destroyTree(current->getRight()));
         }
+        delete (current->getData());
         delete (current);
         return nullptr;
     }
