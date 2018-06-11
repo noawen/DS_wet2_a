@@ -3,12 +3,26 @@
 #include "minHeap.h"
 #include "hash.h"
 #include "clan.h"
+#include "oasis.h"
 
 
-
+/*
 void testMinHeap(){
-    int a[5] = {20,18,32,9,0};
-    Heap<int> h = Heap<int>(5,a);
+    int a[3] = {11,22,33};
+    Clan clan_to_insert;
+    Clan* clans_a[3]={};
+    for (int i = 0; i < 3 ;i++){
+        clans_a[i] = new Clan(a[i]);
+    }
+
+    Heap heap= Heap(3,a,clans_a);
+    int x = 9;
+
+    Clan*clans_a[3]={};
+    Clan clan1 (1);
+    Clan clan2 (2);
+    Clan clan3 (3);
+    Heap h = Heap(5,a);
     h.printHeap();
     h.delMin();
     h.printHeap();
@@ -33,9 +47,9 @@ void testMinHeap(){
     //h.decKey(ptr,-1);
     h.printHeap();
     //h.delMin();
+*/
 
-}
-
+/*
 void testTree(){
 
     AvlTree<int,isBigger> tree = AvlTree<int,isBigger>();
@@ -44,7 +58,7 @@ void testTree(){
     tree.insert(&x);
     tree.insert(&y);
 }
-
+*/
 
 /*
 void testMemory(){
@@ -64,6 +78,7 @@ void testMemory(){
  */
 
 void testHash(){
+
     int a[5] = {1,2,3,4,5};
     Hash<int> h = Hash<int>(5,a);
 
@@ -84,23 +99,47 @@ void testHash(){
     h.printHash();
      h.find(27);
 
+    cout<<"---------"<<endl;
+
     /****Clan's hash***/
     Clan clan1 (1);
     Clan clan2 (2);
     Clan clan3 (3);
     Clan b [3]={clan1,clan2,clan3};
     Hash<Clan> clans = Hash<Clan>(3,b);
-    Clan clan4 (4);
-    clans.insert(clan4);
+   // Hash<Clan> clans = Hash<Clan>();
+    Clan clan77 (77);
+   clans.insert(clan77);
+    clans.printHash();
     int x=4;
-    clan1.getPalyersTree().insert(&x);
+    //clan1.getPalyersTree().insert(&x);
+  //  int y=6;
+}
+
+/*
+void testTree(){
+
+    AvlTree<int,isBigger> tree = AvlTree<int,isBigger>();
+    int x = 1;
+    int y = 2;
+    tree.insert(&x);
+    tree.insert(&y);
+}
+*/
+
+
+void testOasis(){
+    int array[3]={1,2,3};
+    Oasis oasis(3,array);
+    oasis.addClan(5);
 }
 
 int main() {
   // testMinHeap();
-  //  testTree();
+    //testTree();
    // testMemory();
-    testHash();
+    //testHash();
+    testOasis();
 
 
     return 0;

@@ -5,14 +5,16 @@
 #ifndef DS_WET2_A_HASH_H
 #define DS_WET2_A_HASH_H
 #include "List.h"
+#include "clan.h"
 
 using namespace List_t;
 using std::cout;
 using std::endl;
 
 class HashExceptions{};
-class ELEMENT_ALREADY_EXIST : HashExceptions{};
-class ELEMENT_NOT_FOUND : HashExceptions{};
+class ELEMENT_ALREADY_EXIST_HASH : HashExceptions{};
+class ELEMENT_NOT_FOUND_HASH : HashExceptions{};
+
 
 template <class T>
 class Hash {
@@ -42,6 +44,35 @@ public:
         }
     }
 
+    Hash(const Hash& toCopy): size(toCopy.size), used(toCopy.used), table(NULL) {
+        table = new List<T>[toCopy.size];
+        try {
+            for (int i = 0; i < toCopy.size; i++) {
+                table[i] = toCopy.table[i];
+            }
+        } catch (std::bad_alloc& e) {
+            delete[] table;
+            throw e;
+        }
+    }
+
+    Hash&operator= (const Hash& toCopy){
+        List<T>* temp_list = new List<T>[toCopy.size];
+    //    try {
+            for (int i = 0; i < toCopy.size; i++) {
+                temp_list[i] = toCopy.table[i];
+           }
+     //   } catch (std::bad_alloc& e) {
+      //      delete[] temp_copy;
+     //       throw e;
+     //   }
+        delete[] this->table;
+        this->table = temp_list;
+        this->size = toCopy.size;
+        this->used = toCopy.used;
+        return *this;
+    }
+
     void rehash(int size){
         List<T>* new_hash = new List<T>[size];
         for (int i = 0; i < this->size; i++){
@@ -49,7 +80,7 @@ public:
                 new_hash[it.operator*() % size].insert(it.operator*());
             }
         }
-        delete[] this->table;
+        delete []this->table;
         this->table = new_hash;
         this->size = size;
     }
@@ -60,7 +91,7 @@ public:
         }
         for(typename List<T>::Iterator it = this->table[data % size].begin(); it != this->table[data % size].end(); it++){
             if (it.operator*() == data){
-                throw ELEMENT_ALREADY_EXIST();
+                throw ELEMENT_ALREADY_EXIST_HASH();
             }
         }
         this->table[data % size].insert(data);
@@ -74,12 +105,19 @@ public:
                 return it;
             }
         }
-        throw ELEMENT_NOT_FOUND();
+        throw ELEMENT_NOT_FOUND_HASH();
     }
 
-    ~Hash(){
-        delete[] this->table;
+    T* find_ptr(T data){
+        for(typename List<T>::Iterator it = this->table[data % size].begin(); it != this->table[data % size].end(); it++){
+            if (it.operator*() == data){
+                return &it.operator*();
+            }
+        }
+        throw ELEMENT_NOT_FOUND_HASH();
     }
+
+
 
     void printHash(){
         for (int i = 0; i < this->size; i++){
@@ -91,6 +129,9 @@ public:
         }
     }
 
+    ~Hash(){
+        delete [] this->table;
+    }
 };
 
 #endif //DS_WET2_A_HASH_H

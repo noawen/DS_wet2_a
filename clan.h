@@ -6,15 +6,21 @@
 #define DS_WET2_A_CLAN_H
 
 #include "AVLtree.h"
+#include "player.h"
+#include "rankTree.h"
+class heapNode;
 class isBigger_byId_clan;
+class is_bigger_by_score_player;
 class isBigger;
 class Player;
 
-class Clan {
+class Clan{
+
     int id;
     int num_of_players;
-    bool Conquer;
-    AvlTree<int,isBigger> players_tree;
+    bool conquer;
+    rankTree<Player,is_bigger_by_score_player> players_tree;
+    heapNode* clanInHeap;
 
 public:
     Clan();
@@ -27,14 +33,26 @@ public:
 
     void setNumOfPlayers();
 
+    heapNode* getClanInHeap();
+
     bool isConquered();
 
     void setNumOfPlayers(int num);
 
-    /////
-    void setPlayersTree (AvlTree <int,isBigger>& tree);
+    int getHeapIndex();
 
-    AvlTree <int,isBigger>& getPalyersTree();
+    //void setHeapIndex(int new_index);
+
+    void setClanInHeap(heapNode* clanInHeap);
+
+    /////
+    void setPlayersTree (rankTree<Player,is_bigger_by_score_player>& tree);
+
+    friend std::ostream& operator<<(std::ostream& output,  Clan& clan);
+
+
+
+    rankTree<Player,is_bigger_by_score_player>& getPlayersTree();
 /////
 
     Clan&operator=(const Clan& clan);
@@ -48,6 +66,7 @@ public:
 };
 
 
+/*
 class isBigger_byId_clan {
 public:
     int operator()(Clan* a, Clan* b) {
@@ -73,7 +92,9 @@ public:
         return 0;
     }
 };
-
+*/
 
 
 #endif //DS_WET2_A_CLAN_H
+
+

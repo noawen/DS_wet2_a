@@ -4,45 +4,39 @@
 
 #ifndef DS_WET2_A_RANKTREE_H
 #define DS_WET2_A_RANKTREE_H
-//
-// Created by Dell on 04/06/2018.
-//
-
-#ifndef DS_WET2_A_AVLTREE_H
-#define DS_WET2_A_AVLTREE_H
 
 #define nullptr 0
 #include <iostream>
 using std::cout;
 using std::endl;
 
-class TreeExceptions {
+class RankTreeExceptions {
 };
-class FAILURE_TREE: public TreeExceptions {
+class FAILURE_RANK_TREE: public RankTreeExceptions {
 };
-class ALLOCATION_ERROR_TREE: public TreeExceptions {
+class ALLOCATION_ERROR_RANK_TREE: public RankTreeExceptions {
 };
 
 
 template<class T>
-class Node {
+class Node_r {
     T* data;
     int height;
     int contain;
     int score;
     int scoreInTree;
     int balanceFactor;
-    Node* father;
-    Node* left, *right;
+    Node_r* father;
+    Node_r* left, *right;
 
 public:
-    Node (T* data, int score){
+    Node_r (T* data, int score){
         try {
             T* new_data = new T(*data);
             this->data = new_data;
         }
         catch (std::bad_alloc&){
-            throw ALLOCATION_ERROR_TREE();
+            throw ALLOCATION_ERROR_RANK_TREE();
         }
         this->height = 0;
         this->contain = 1;
@@ -64,7 +58,7 @@ public:
             this->data = new_data;
         }
         catch (std::bad_alloc&){
-            throw ALLOCATION_ERROR_TREE();
+            throw ALLOCATION_ERROR_RANK_TREE();
         }
     }
 
@@ -102,21 +96,21 @@ public:
         this->balanceFactor = balanceFactor;
     }
 
-    void setFather (Node<T>* father){
+    void setFather (Node_r<T>* father){
         if (this == nullptr){
             return;
         }
         this->father = father;
     }
 
-    void setRight (Node<T>* right){
+    void setRight (Node_r<T>* right){
         if (this == nullptr){
             return;
         }
         this->right = right;
     }
 
-    void setLeft (Node<T>* left){
+    void setLeft (Node_r<T>* left){
         if (this == nullptr){
             return;
         }
@@ -160,21 +154,21 @@ public:
     }
 
 
-    Node<T>* getFather() {
+    Node_r<T>* getFather() {
         if (this == nullptr) {
             return nullptr;
         }
         return this->father;
     }
 
-    Node<T>* getRight() {
+    Node_r<T>* getRight() {
         if (this == nullptr) {
             return nullptr;
         }
         return this->right;
     }
 
-    Node<T>* getLeft() {
+    Node_r<T>* getLeft() {
         if (this == nullptr) {
             return nullptr;
         }
@@ -185,16 +179,16 @@ public:
 };
 
 template <class T, class compKey>
-class AvlTree {
-    Node<T> *root;
+class rankTree {
+    Node_r<T> *root;
 
-    Node<T> *insert(T *data, int score, Node<T> *current) {
+    Node_r<T> *insert(T *data, int score, Node_r<T> *current) {
         compKey compare;
         if (current == nullptr) {
             try {
-                current = new Node<T>(data, score);
+                current = new Node_r<T>(data, score);
             } catch (std::bad_alloc &) {
-                throw ALLOCATION_ERROR_TREE();
+                throw ALLOCATION_ERROR_RANK_TREE();
             }
         } else if (compare(data, current->getData()) < 0) {
             current->setLeft(insert(data, score, current->getLeft()));
@@ -219,57 +213,57 @@ class AvlTree {
                 }
             }
         } else {
-            throw FAILURE_TREE();
+            throw FAILURE_RANK_TREE();
         }
         current->setHeight(max(current->getLeft(), current->getRight()) + 1);
         return current;
     }
 
 public:
-    AvlTree() {
+    rankTree() {
         this->root = nullptr;
     }
 
-    Node<T> *getRoot() {
+    Node_r<T> *getRoot() {
         if (!this){
             return NULL;
         }
         return this->root;
     }
 
-    void setRoot(Node<T> *new_root) {
+    void setRoot(Node_r<T> *new_root) {
         if (new_root == nullptr)
             return;
         this->root = new_root;
     }
-    Node<T>* copyRec(Node<T>* dst, Node<T>* src){
+    Node_r<T>* copyRec(Node_r<T>* dst, Node_r<T>* src){
         if (src == nullptr){
             return nullptr;
         }
-        Node<T>* newNode;
+        Node_r<T>* newNode_r;
         try {
-            newNode = new Node<T>(src->getData(), 0);
-            newNode->setHeight(src->getHeight());
-            newNode->setContain(src->getContain());
-            newNode->setScore(src->getScore());
-            newNode->setScoreInTree(src->getScoreInTree());
-            newNode->setBalanceFactor(src->getBalanceFactor());
+            newNode_r = new Node_r<T>(src->getData(), 0);
+            newNode_r->setHeight(src->getHeight());
+            newNode_r->setContain(src->getContain());
+            newNode_r->setScore(src->getScore());
+            newNode_r->setScoreInTree(src->getScoreInTree());
+            newNode_r->setBalanceFactor(src->getBalanceFactor());
         }
         catch (std::bad_alloc&){
-            throw ALLOCATION_ERROR_TREE();
+            throw ALLOCATION_ERROR_RANK_TREE();
         }
-        newNode->setLeft(copyRec(newNode->getLeft(), src->getLeft()));
-        newNode->setRight(copyRec(newNode->getRight(), src->getRight()));
-        return newNode;
+        newNode_r->setLeft(copyRec(newNode_r->getLeft(), src->getLeft()));
+        newNode_r->setRight(copyRec(newNode_r->getRight(), src->getRight()));
+        return newNode_r;
     }
 
 
     //copyC'tor
-    AvlTree<T, compKey>(const AvlTree<T, compKey>& tree){
+    rankTree<T, compKey>(const rankTree<T, compKey>& tree){
         this->root = copyRec(nullptr, tree.root);
     }
     //oprator=
-    AvlTree<T, compKey>& operator=(const AvlTree<T, compKey>& tree){
+    rankTree<T, compKey>& operator=(const rankTree<T, compKey>& tree){
         //DELETE deleteRec
         deleteRec(this->root);
         this->root = copyRec(nullptr, tree.root);
@@ -277,7 +271,7 @@ public:
     }
 
     //delete rec
-    void deleteRec (Node<T>* current){
+    void deleteRec (Node_r<T>* current){
         if (current == nullptr){
             return;
         }
@@ -288,7 +282,7 @@ public:
     }
 
 
-    T find(T data, Node<T> *current) {
+    T find(T data, Node_r<T> *current) {
         if (!current) {
             //   throw FAILURE_TREE();
             return nullptr;
@@ -322,7 +316,7 @@ public:
     }
 
 
-    int max(Node<T> *left, Node<T> *right) {
+    int max(Node_r<T> *left, Node_r<T> *right) {
         if (left == nullptr && right == nullptr) {
             return -1;
         } else if (left == nullptr) {
@@ -334,7 +328,7 @@ public:
     }
 
 
-    int balanceFactor(Node<T> *current) {
+    int balanceFactor(Node_r<T> *current) {
         if (current->getRight() == nullptr && current->getLeft() == nullptr) {
             current->setBalanceFactor(0);
             return 0;
@@ -353,7 +347,7 @@ public:
         return (current->getLeft()->getHeight() - current->getRight()->getHeight());
     }
 
-    int calcContain (Node<T>* current){
+    int calcContain (Node_r<T>* current){
         if (!current){
             return 0;
         }
@@ -372,7 +366,7 @@ public:
         }
     }
 
-    int calcScore (Node<T>* current){
+    int calcScore (Node_r<T>* current){
         if (!current){
             return 0;
         }
@@ -391,12 +385,12 @@ public:
         }
     }
 
-    Node<T> *LL(Node<T> *current) {
+    Node_r<T> *LL(Node_r<T> *current) {
         if (current == nullptr) {
             return nullptr;
         }
-        Node<T> *left = current->getLeft();
-        Node<T> *leftR = left->getRight();
+        Node_r<T> *left = current->getLeft();
+        Node_r<T> *leftR = left->getRight();
         if (leftR != nullptr) {
             current->setLeft(leftR);
         } else {
@@ -413,12 +407,12 @@ public:
     }
 
 
-    Node<T> *RR(Node<T> *current) {
+    Node_r<T> *RR(Node_r<T> *current) {
         if (current == nullptr) {
             return nullptr;
         }
-        Node<T> *right = current->getRight();
-        Node<T> *rightL = right->getLeft();
+        Node_r<T> *right = current->getRight();
+        Node_r<T> *rightL = right->getLeft();
         if (rightL != nullptr) {
             current->setRight(rightL);
         } else {
@@ -434,12 +428,12 @@ public:
         return right;
     }
 
-    Node<T> *LR(Node<T> *current) {
+    Node_r<T> *LR(Node_r<T> *current) {
         current->setLeft(RR(current->getLeft()));
         return LL(current);
     }
 
-    Node<T> *RL(Node<T> *current) {
+    Node_r<T> *RL(Node_r<T> *current) {
         current->setRight(LL(current->getRight()));
         return RR(current);
     }
@@ -457,9 +451,9 @@ public:
     }
 
 
-    Node<T> remove(T data, Node<T> *current) {
+    Node_r<T>* remove(T data, Node_r<T> *current) {
         compKey compare;
-        // Node<T> *temp;
+        // Node_r<T> *temp;
         if (current == nullptr) {
             return current;
         }
@@ -472,10 +466,10 @@ public:
             current->setContain(calcContain(current));
             current->setScoreInTree(calcScore(current));
         } else {                                                       //if we find and doesn't have 2 children
-            Node<T> *left = current->getLeft();
-            Node<T> *right = current->getRight();
+            Node_r<T> *left = current->getLeft();
+            Node_r<T> *right = current->getRight();
             if (right == nullptr || left == nullptr) {
-                Node<T> *tmp = (left != nullptr) ? left : right;     //tmp to be the only child
+                Node_r<T> *tmp = (left != nullptr) ? left : right;     //tmp to be the only child
                 if (tmp == nullptr) {                                // has no child
                     tmp = current;
                     current = nullptr;
@@ -492,7 +486,7 @@ public:
                 delete (tmp->getData());
                 delete (tmp);
             } else {                                         // has two children
-                Node<T> *min = findMin(current->getRight());
+                Node_r<T> *min = findMin(current->getRight());
                 current->setData(min->getData());
                 current->setScore(min->getScore());
                 current->setRight(remove(min->getData(), current->getRight()));
@@ -522,7 +516,7 @@ public:
     }
 
 
-    Node<T>* findMin(Node<T>* current)
+    Node_r<T>* findMin(Node_r<T>* current)
     {
         if(current == NULL)
             return NULL;
@@ -532,7 +526,7 @@ public:
             return findMin(current->getLeft());
     }
 
-    int returnBackInOrder(Node<T> node, T* arr, int i) {
+    int returnBackInOrder(Node_r<T>* node, T* arr, int i) {
         if (node == NULL) {
             return i;
         }
@@ -548,7 +542,7 @@ public:
         return i;
     }
 
-    void printInOrder(Node<T> *node) {
+    void printInOrder(Node_r<T> *node) {
         if (node != NULL) {
             if (node->getLeft() != NULL) {
                 printInOrder(node->getLeft());
@@ -560,7 +554,7 @@ public:
         }
     }
 
-    void printBackInOrder(Node<T> *node) {
+    void printBackInOrder(Node_r<T> *node) {
         if (node != NULL) {
             if (node->getRight() != NULL) {
                 printBackInOrder(node->getRight());
@@ -572,7 +566,7 @@ public:
         }
     }
 
-    int size(Node<T> *node) {
+    int size(Node_r<T> *node) {
         if (node == NULL)
             return 0;
         else return 1 + size(node->getLeft()) + size(node->getRight());
@@ -597,7 +591,7 @@ public:
             c[ic] = b[ib];
     }
 
-    void printTreeToArray (Node<T>* current, T** arr, int *i){
+    void printTreeToArray (Node_r<T>* current, T** arr, int *i){
         if (current != NULL) {
             if (current->getLeft() != NULL) {
                 printTreeToArray(current->getLeft(), arr, i);
@@ -610,11 +604,11 @@ public:
         }
     }
 
-    Node<T>* select(int k, int* bigger){
+    Node_r<T>* select(int k, int* bigger){
         return selectRec(this->getRoot(), k, bigger);
     }
 
-    Node<T>* selectRec(Node<T>* current ,int k, int* bigger){
+    Node_r<T>* selectRec(Node_r<T>* current ,int k, int* bigger){
         if (current->getLeft()->getContain() == k-1){
             (*bigger) += current->getScore() + current->getRight()->getScoreInTree();
             return current;
@@ -628,7 +622,7 @@ public:
         }
     }
 
-    Node<T>* destroyTree (Node<T>* current){
+    Node_r<T>* destroyTree (Node_r<T>* current){
         if (current == nullptr){
             return nullptr;
         }
@@ -644,7 +638,7 @@ public:
         return nullptr;
     }
 
-    ~AvlTree(){
+    ~rankTree(){
         destroyTree(this->getRoot());
         root = NULL;
     }
@@ -652,5 +646,4 @@ public:
 
 
 
-#endif //DS_WET2_A_AVLTREE_H
 #endif //DS_WET2_A_RANKTREE_H

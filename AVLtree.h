@@ -210,6 +210,45 @@ public:
         }
     }
 
+    Node<T>* copyRec(Node<T>* dst, Node<T>* src){
+        if (src == nullptr){
+            return nullptr;
+        }
+        Node<T>* newNode;
+        try {
+            newNode = new Node<T>(src->getData());
+            newNode->setHeight(src->getHeight());
+            newNode->setBalanceFactor(src->getBalanceFactor());
+        }
+        catch (std::bad_alloc&){
+            throw ALLOCATION_ERROR_TREE();
+        }
+        newNode->setLeft(copyRec(newNode->getLeft(), src->getLeft()));
+        newNode->setRight(copyRec(newNode->getRight(), src->getRight()));
+        return newNode;
+    }
+
+    AvlTree<T, compKey>(const AvlTree<T, compKey>& tree){
+        this->root = copyRec(nullptr, tree.root);
+    }
+
+    AvlTree<T, compKey>& operator=(const AvlTree<T, compKey>& tree){
+        //DELETE deleteRec
+        deleteRec(this->root);
+        this->root = copyRec(nullptr, tree.root);
+        return *this;
+    }
+
+    void deleteRec (Node<T>* current){
+        if (current == nullptr){
+            return;
+        }
+        deleteRec(current->getLeft());
+        deleteRec(current->getRight());
+        delete (current->getData());
+        delete (current);
+    }
+
     bool contain(T* data) {
         if (!find(data, this->getRoot())) {
             return false;

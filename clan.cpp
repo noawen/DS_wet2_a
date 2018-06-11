@@ -7,15 +7,17 @@
 Clan::Clan() {
     this->id = 0;
     this->num_of_players = 0;
-    this->Conquer = false;
-    this->players_tree =  AvlTree<int , isBigger>();
+    this->conquer = false;
+    this->players_tree =  rankTree<Player , is_bigger_by_score_player>();
+    this->clanInHeap = NULL;
 }
 
 Clan::Clan(int id){
     this->id = id;
     this->num_of_players = 0;
-    this->Conquer = false;
-    this->players_tree =  AvlTree<int , isBigger>();
+    this->conquer = false;
+    this->players_tree =  rankTree<Player , is_bigger_by_score_player>();
+    this->clanInHeap = NULL;
 }
 
 int Clan::getId() {
@@ -24,16 +26,28 @@ int Clan::getId() {
     return this->id;
 }
 
-void Clan::setPlayersTree(AvlTree<int, isBigger>& tree) {
+void Clan::setPlayersTree(rankTree<Player , is_bigger_by_score_player>& tree) {
     if (!this)
         return;
     this->players_tree = tree;
 }
 
-AvlTree<int,isBigger>& Clan ::getPalyersTree(){
-   // if (!this)
-       // return NULL;
+heapNode* Clan::getClanInHeap() {
+    if (!this)
+        return nullptr;
+    return clanInHeap;
+}
+
+rankTree<Player , is_bigger_by_score_player>& Clan ::getPlayersTree(){
+    // if (!this)
+    // return NULL;
     return this->players_tree;
+}
+
+void Clan::setClanInHeap(heapNode* clanInHeap) {//MAYBE NEW IS NEEDED
+    if (!this)
+        return;
+    this->clanInHeap = clanInHeap;
 }
 
 int Clan::operator%(int n){
@@ -48,14 +62,17 @@ Clan& Clan::operator=(const Clan& clan){
     this->id = clan.id;
     this->num_of_players = clan.num_of_players;
     this->players_tree = clan.players_tree;
-    this->Conquer = clan.Conquer;
+    this->conquer = clan.conquer;
+    this->clanInHeap = clan.clanInHeap;
     return *this;
 }
 
 
-Clan::~Clan() {
-    //if (this->players_tree.getRoot() != NULL) {
-       // delete this->players_tree;
-   // }
-    //this->players_tree = nullptr;
+std::ostream& operator<<(std::ostream& os,  Clan& cl) {
+    os << "id:" << cl.getId();
+    return os;
 }
+
+Clan::~Clan() {
+}
+

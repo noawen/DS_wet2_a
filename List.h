@@ -309,6 +309,38 @@ namespace List_t {
             delete this->head;
             delete this->last;
         }
+/*
+        void operator=(const List& list){
+            for (Iterator it = this->begin(); it != this->end(); ){
+                this->remove(it);
+                it = this->begin();
+            }
+            int size = list.getSize();
+            Iterator it = list.begin();
+            for (int i = 0; i < size; i++){
+                this->insert(it.operator*());
+                it++;
+            }
+        }
+*/
+
+         List<T>& operator=(const List& list) {
+            if (this == &list) {
+                return *this;
+            }
+            Iterator it = begin();
+            while (it != end()) {
+                Iterator to_delete = it++;
+                remove(to_delete);
+            }
+
+            for (it = list.begin(); it != list.end(); it++) {
+                this->insert(it.operator*());
+            }
+            return *this;
+        }
+
+
 
         List(const List &list) {
             this->head = new Node<T>();

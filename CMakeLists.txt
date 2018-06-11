@@ -3,5 +3,5 @@ project(DS_wet2_a)
 
 set(CMAKE_CXX_STANDARD 98)
 set(CMAKE_CXX_FLAGS "-DNDEBUG" )
-set(SOURCE_FILES main.cpp AVLtree.h minHeap.h player.cpp player.h clan.cpp clan.h hash.h List.h)
+set(SOURCE_FILES main.cpp AVLtree.h minHeap.h player.cpp player.h clan.cpp clan.h hash.h List.h rankTree.h oasis.cpp oasis.h )
 add_executable(DS_wet2_a ${SOURCE_FILES})
