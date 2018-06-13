@@ -27,7 +27,7 @@ Oasis::Oasis(int n, int* clanIDs) :
         clans_hash.insert(clan_to_insert);
         clans_ptr[i] = this->clans_hash.find_ptr(clan_to_insert);
     }
-    this->min_heap.Heap_create(n,clanIDs,clans_ptr);
+    this->min_heap = Heap<int>(n,clanIDs);
     this->all_players_by_id = AvlTree<Player,is_bigger_by_id_player>();
     this->tot_num_of_players = 0;
 }
@@ -40,8 +40,8 @@ void Oasis::addClan(int clanID) {
         }
         Clan clan_to_insert(clanID);
         this->clans_hash.insert(clan_to_insert);
-        Clan *clan_ptr = this->clans_hash.find_ptr(clanID);
-        this->min_heap.insert(clanID,clan_ptr);
+        //Clan *clan_ptr = this->clans_hash.find_ptr(clanID);
+        this->min_heap.insert(clanID);
     }
     catch(ELEMENT_ALREADY_EXIST_HASH&){
         throw (FAILURE_OASIS());
@@ -83,6 +83,59 @@ void Oasis::clanFight(int clan1, int clan2, int k1, int k2) {
     }
     Clan clan_to_find1 = Clan(clan1);
     Clan clan_to_find2 = Clan(clan2);
+    if ((!(this->clans_hash.contain(clan_to_find1)) || !(this->clans_hash.contain(clan_to_find2)))) {
+        throw FAILURE_OASIS();
+    }
+
+    try {
+
+        Clan found_clan1 = this->clans_hash.find(clan_to_find1).operator*();
+        Clan found_clan2 = this->clans_hash.find(clan_to_find2).operator*();
+        if (found_clan1.getNumOfPlayers() < k1 || found_clan2.getNumOfPlayers() < k2 || clan1 == clan2 ||
+            found_clan1.isConquered() || found_clan2.isConquered()) {
+            throw FAILURE_OASIS();
+        }
+        int ptr1 = 0;
+        int ptr2 = 0;
+        found_clan1.getPlayersTree().select(found_clan1.getNumOfPlayers() - (k1 - 1), &ptr1);
+        found_clan2.getPlayersTree().select(found_clan2.getNumOfPlayers() - (k2 - 1), &ptr2);
+
+        if (ptr1 > ptr2 || (ptr1 == ptr2 && clan2 > clan1)) {
+            this->clans_hash.find(found_clan2).operator*().setConquered();
+        } else {
+            if (ptr2 > ptr1 || (ptr1 == ptr2 && clan1 > clan2)) {
+                this->clans_hash.find(found_clan1).operator*().setConquered();
+            }
+        }
+        updateMinClan();
+    }
+
+    catch (ELEMENT_NOT_FOUND_HASH &) {
+        throw (FAILURE_OASIS());
+    }
+    catch (FAILURE_RANK_TREE &) {
+        throw (FAILURE_OASIS());
+    }
+    catch (FAILURE_MIN_HEAP &) {
+        throw (FAILURE_OASIS());
+    }
+
+}
+
+    void Oasis::updateMinClan(){
+        while(this->clans_hash.find(this->min_heap.findMin()).operator*().isConquered()){
+            this->min_heap.delMin();
+        }
+    }
+
+
+
+    /*
+    if (clan1 < 0 || clan2 < 0 || k1 <= 0 || k2 <= 0) {
+        throw INVALID_INPUT_OASIS();
+    }
+    Clan clan_to_find1 = Clan(clan1);
+    Clan clan_to_find2 = Clan(clan2);
     if ((!(this->clans_hash.contain(clan_to_find1))|| !(this->clans_hash.contain(clan_to_find2)))){
         throw FAILURE_OASIS();
     }
@@ -118,18 +171,21 @@ void Oasis::clanFight(int clan1, int clan2, int k1, int k2) {
     catch (FAILURE_MIN_HEAP &) {
         throw (FAILURE_OASIS());
     }
-}
+     */
+
 
 void Oasis::getMinClan(int *clan) {
+
     if (clan == NULL){
         throw INVALID_INPUT_OASIS();
     }
     try{
-        *clan = this->min_heap.min();
+        *clan = this->min_heap.findMin();
     }
     catch(FAILURE_MIN_HEAP&){
         throw (FAILURE_OASIS());
     }
+
 }
 
 Oasis::~Oasis() {

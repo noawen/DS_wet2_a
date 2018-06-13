@@ -21,7 +21,7 @@ class Oasis {
     int tot_num_of_players;
     AvlTree<Player, is_bigger_by_id_player> all_players_by_id;
     Hash<Clan> clans_hash;
-    Heap min_heap;
+    Heap<int> min_heap;
 
 public:
 
@@ -34,6 +34,8 @@ public:
     void clanFight(int clan1, int clan2, int k1, int k2);
 
     void getMinClan(int* clan);
+
+    void updateMinClan();
 
     ~Oasis();
 
