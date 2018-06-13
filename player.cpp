@@ -5,12 +5,12 @@
 #include "player.h"
 
 Player::Player(int id, int score){
-    id = id;
-    score = score;
+    this->id= id;
+    this->score = score;
 }
 
 Player::Player(int id){
-    id = id;
+    this->id = id;
     score = 0;
 }
 

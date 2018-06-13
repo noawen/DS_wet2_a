@@ -1,502 +1,202 @@
 init 2 0 1
-addClan -2
-getMinClan
-clanFight 4 7 7 7
-clanFight 1 5 0 6
-getMinClan
-addClan 6
-clanFight 5 5 1 0
-addPlayer 190 822 0
+clanFight -1 -1 0 -1
+clanFight 2 2 10 8
+clanFight 5 -1 1 9
 addClan 0
+clanFight 7 3 1 5
+clanFight 2 6 3 4
+addPlayer 70 907 5
+addPlayer 301 208 3
 getMinClan
-addPlayer 770 840 4
-getMinClan
-addPlayer 354 65 -1
-getMinClan
-clanFight 5 3 7 3
-addPlayer 694 -7 1
-clanFight 0 8 0 3
-addClan 1
-clanFight 4 2 5 7
-addPlayer 605 450 3
+clanFight 3 0 3 10
+addPlayer 471 729 6
+clanFight 6 0 9 -1
+addPlayer 657 535 2
+addPlayer 233 236 0
+clanFight 2 2 0 5
 addClan 4
-addPlayer -9 165 -1
-clanFight 4 2 9 3
-addPlayer 780 892 0
-getMinClan
-addPlayer 177 478 -1
-addClan 2
-addPlayer 402 773 7
-clanFight -1 4 2 3
-addPlayer 939 -3 2
-getMinClan
-addClan -1
-addPlayer 754 219 3
-addPlayer 823 16 3
-addClan 5
-getMinClan
-addClan 0
-clanFight 6 3 8 5
-clanFight 2 -1 2 -1
-clanFight 2 8 5 2
-addPlayer 746 963 0
-clanFight 6 1 0 6
-addClan 1
+clanFight 6 1 6 5
 addClan 6
-clanFight 2 1 4 7
-addPlayer 857 373 4
-clanFight 5 4 8 7
-addClan -1
-addPlayer 121 80 3
+addClan 1
+addPlayer 396 788 8
+addPlayer 433 104 8
 addClan 8
-clanFight -1 4 0 3
-addPlayer 825 714 0
-getMinClan
-clanFight 8 0 9 4
-addClan -2
-addPlayer 90 987 6
-getMinClan
-addClan 3
-clanFight 2 8 6 4
-addPlayer 354 788 6
-clanFight 7 2 7 -1
-addClan 2
-addPlayer 125 472 1
-clanFight 6 4 4 7
-clanFight 3 7 10 8
-addClan 2
-addPlayer 824 175 5
-addClan -1
-clanFight 1 -1 9 3
-clanFight 8 5 -1 6
-getMinClan
-addPlayer 856 760 5
-clanFight 0 4 8 7
-clanFight 3 7 1 -1
 addClan 7
-clanFight 8 7 5 7
-addPlayer 598 37 1
-clanFight 5 4 5 6
-addPlayer 544 722 7
+clanFight 0 5 5 9
 getMinClan
-addClan 1
-addClan 6
-getMinClan
-getMinClan
-clanFight 4 2 3 0
-addPlayer 764 526 7
-addClan 4
-addPlayer 957 907 7
-addPlayer 869 219 2
-clanFight 7 1 4 0
-clanFight 3 2 4 1
-addPlayer 183 754 -1
-addPlayer 540 201 8
-clanFight 4 -1 10 9
-addClan 3
-clanFight 6 4 5 9
-addPlayer 475 491 7
-addPlayer 502 224 -1
-clanFight 3 6 -1 6
-addPlayer 108 278 -2
-clanFight 8 2 9 7
-clanFight 7 6 2 0
-getMinClan
-addClan 6
-clanFight 4 8 6 -1
-addPlayer 623 12 6
-clanFight 6 0 10 2
-addClan 5
-clanFight 4 -1 9 4
-addClan 6
-getMinClan
-getMinClan
-addPlayer 814 457 1
-addPlayer 408 -3 2
-getMinClan
-addPlayer 420 190 1
-addClan 6
-getMinClan
-addPlayer 808 9 5
-addPlayer 682 293 -2
-clanFight 4 7 -1 0
-addPlayer 510 931 0
-getMinClan
-clanFight 3 6 1 8
-clanFight 0 7 -1 0
 addClan 0
-addPlayer 327 555 1
-addPlayer 643 835 4
 getMinClan
+addPlayer 985 964 7
 getMinClan
-getMinClan
-getMinClan
-getMinClan
-addClan 1
-clanFight 4 0 10 2
-clanFight 0 6 0 0
-clanFight 1 8 -1 6
-getMinClan
-addPlayer 982 370 -1
-addClan 6
-addPlayer 888 364 7
-clanFight 5 4 1 8
-clanFight 0 3 2 3
-getMinClan
-addClan 8
-clanFight 1 6 5 2
-addPlayer 568 977 0
-getMinClan
-addPlayer 257 213 -2
-getMinClan
-getMinClan
-getMinClan
-getMinClan
-getMinClan
-addClan 6
-addPlayer 484 102 3
-addClan 6
+addClan 2
+clanFight 1 8 10 3
+addPlayer 653 521 0
+addPlayer 744 703 8
+addClan 4
 addClan -2
-clanFight 0 6 2 6
+getMinClan
+clanFight -1 5 6 7
+getMinClan
+addPlayer 833 379 -1
+clanFight 4 7 7 0
+clanFight 3 2 1 9
+clanFight 8 4 10 7
 getMinClan
 addClan 7
-addClan 8
+addPlayer 329 470 1
+addClan 3
+addPlayer 214 869 6
+clanFight 7 1 7 7
 addClan 1
-addClan 2
-addPlayer 959 129 3
-addPlayer 667 190 7
-clanFight 4 0 0 5
-addPlayer 123 581 4
-addPlayer 351 926 1
-addClan 2
-clanFight 5 0 -1 5
-addPlayer 380 101 4
-addPlayer 127 696 8
-addClan -1
-addPlayer 376 507 1
-addClan 0
+addPlayer 462 866 -1
+clanFight 3 4 4 9
 getMinClan
 getMinClan
-addPlayer 896 736 -2
+addClan 7
+getMinClan
+clanFight 0 7 4 5
+addPlayer 643 956 0
+getMinClan
+addPlayer 539 566 5
+clanFight -1 5 9 9
+clanFight 3 2 6 2
+addPlayer 73 959 -1
+addPlayer 542 999 -2
+clanFight 8 -1 2 8
+addPlayer 799 658 1
+addClan 7
+clanFight 3 8 1 -1
+getMinClan
+addClan 1
+addPlayer 902 987 4
 addClan 4
-clanFight -1 3 8 8
-getMinClan
-getMinClan
-getMinClan
-clanFight 1 7 2 2
-addPlayer 850 997 6
-addClan 5
-addClan -1
-clanFight -1 6 2 7
-getMinClan
-clanFight 2 6 2 -1
-addClan -1
-clanFight 5 2 9 7
-addClan 0
-addClan -2
-addPlayer 372 770 7
-addClan 0
-getMinClan
-getMinClan
-getMinClan
-addClan 8
-clanFight 1 7 9 4
-addClan 1
-addClan 1
-addClan 2
-getMinClan
-addClan -1
-getMinClan
-clanFight -1 8 5 9
-clanFight 1 0 8 7
-addClan 1
-clanFight -1 7 9 10
-getMinClan
-addPlayer 414 563 3
-getMinClan
-addPlayer 974 214 4
-addClan 8
-addClan 3
-getMinClan
-clanFight 6 5 8 -1
-addClan 2
 getMinClan
 addClan 3
-addClan 5
-clanFight 7 6 7 -1
-clanFight 5 -1 4 0
-clanFight 0 5 0 1
-addPlayer 746 640 -2
-addPlayer 188 773 2
-addPlayer 966 616 2
-addClan 2
-addClan -1
-getMinClan
-addClan 0
-addPlayer 652 784 6
-addClan 3
-getMinClan
-clanFight 4 0 -1 0
-clanFight 7 0 7 -1
-addPlayer 631 794 6
-clanFight 3 7 10 0
-addPlayer 502 415 6
+clanFight 7 2 5 0
+addPlayer 211 881 7
+addPlayer 535 707 4
 addClan 6
-addClan 1
-getMinClan
-addClan -1
-clanFight 7 0 1 2
-clanFight 8 7 9 4
-addPlayer 718 383 5
-getMinClan
-clanFight 6 -1 7 6
-addPlayer 375 11 8
-clanFight 2 6 2 1
-addClan 8
-clanFight 1 6 7 9
-addClan 1
-getMinClan
-clanFight 8 0 9 1
-clanFight 6 4 5 2
-addClan -2
-clanFight 1 7 8 0
-addClan 0
-clanFight -1 6 6 4
-clanFight 3 2 2 7
-addPlayer 66 349 0
-getMinClan
-getMinClan
-clanFight 7 4 5 3
-clanFight -1 6 7 8
-clanFight -1 8 9 6
-addClan 4
-getMinClan
-addClan 0
-getMinClan
-addClan -2
-addClan 5
-getMinClan
-addPlayer 273 796 4
-addClan 2
-clanFight 1 4 9 1
+addPlayer 959 412 -2
+clanFight 8 1 9 2
 addClan 7
-addPlayer 472 499 3
+clanFight 7 7 8 1
 getMinClan
-addPlayer 785 744 2
-addClan 4
-getMinClan
-clanFight 1 8 9 1
-clanFight 5 6 5 -1
-getMinClan
-addClan 3
-addClan 5
-clanFight 1 8 1 8
-addPlayer 685 288 3
-getMinClan
-getMinClan
-addClan 8
-addPlayer 886 498 6
-clanFight 2 6 2 6
-getMinClan
-getMinClan
-addPlayer 895 899 5
-getMinClan
-getMinClan
-addPlayer 784 89 4
-clanFight 2 1 4 8
-clanFight -1 4 6 3
-clanFight 0 2 7 0
-addClan 3
-addClan 3
-addClan -1
-clanFight 0 3 0 1
-addClan 3
-clanFight 1 7 -1 8
-addPlayer 363 330 2
-addPlayer 931 154 8
-getMinClan
-addPlayer 935 534 4
-clanFight 0 4 -1 0
-getMinClan
-addPlayer 152 455 4
-addClan 3
-clanFight 7 2 4 10
-getMinClan
-clanFight 2 6 10 7
-addPlayer 89 982 8
-clanFight 6 7 5 5
-clanFight -1 -1 9 4
-addPlayer 57 589 2
-getMinClan
-getMinClan
-addClan 1
-getMinClan
-addClan 1
-getMinClan
-getMinClan
-addPlayer 545 75 5
-clanFight 5 0 10 9
-addClan -2
-addPlayer 899 237 2
-getMinClan
-getMinClan
-addClan 0
-clanFight 2 6 5 3
-addClan 0
-getMinClan
-addClan -2
-getMinClan
-getMinClan
-addPlayer 462 110 3
-getMinClan
-getMinClan
-addPlayer 964 43 1
-getMinClan
-addPlayer 27 372 5
-getMinClan
-addPlayer 336 287 4
-addClan 7
-addPlayer 749 498 7
-clanFight 6 0 6 0
-addClan -2
-addPlayer 707 434 7
-getMinClan
-getMinClan
-clanFight 1 7 2 8
-addPlayer 790 640 0
-addClan 3
 addClan 2
-addPlayer 674 382 0
-clanFight 1 2 0 0
 getMinClan
-addClan -2
-addPlayer 298 188 8
-clanFight 7 2 -1 6
-addPlayer 65 775 -1
-addPlayer 789 424 3
+getMinClan
+clanFight 1 2 4 10
 addClan 6
-clanFight 3 5 2 0
+clanFight 4 4 3 2
+clanFight 6 7 7 9
+clanFight 1 8 7 4
+getMinClan
+addPlayer 327 370 4
+addPlayer 780 324 0
 addClan 5
-addClan 5
-addClan 3
-addPlayer 738 34 3
-addPlayer 428 902 8
-addPlayer 853 180 -2
-addClan 5
-clanFight 6 1 8 7
-addClan -2
-getMinClan
-addClan 8
-getMinClan
-getMinClan
-getMinClan
-getMinClan
-clanFight 8 6 10 0
-addPlayer 151 483 8
-addClan 3
-addClan 0
-clanFight 4 8 9 8
-addClan 5
-getMinClan
-addClan -1
+addPlayer 574 547 6
 addClan 2
+addPlayer 642 295 7
+addPlayer 107 972 -1
 getMinClan
-clanFight 4 2 9 10
-addPlayer 672 246 1
-clanFight 5 4 1 9
-addClan -2
+clanFight -1 -1 4 10
+addClan 1
+addPlayer 417 386 -2
+addPlayer 190 300 3
+clanFight 7 2 8 2
+getMinClan
+addClan 4
+addPlayer 169 131 2
+addClan 3
 addClan -1
-addPlayer 434 609 7
-addPlayer 268 465 7
+addClan 1
+addPlayer 841 847 8
+addPlayer 610 541 5
+addPlayer 945 560 3
+addPlayer 667 967 8
+clanFight -1 2 10 9
+addPlayer 692 272 8
+clanFight 6 1 9 0
+clanFight 4 0 -1 2
+addPlayer 544 391 -1
+addClan 0
+clanFight 5 -1 10 8
+getMinClan
+addClan -2
+getMinClan
+getMinClan
+addPlayer 373 701 7
+clanFight -1 2 5 4
+clanFight 7 2 -1 0
+clanFight 6 2 7 9
+getMinClan
+getMinClan
+getMinClan
+clanFight 5 2 5 0
+addClan 2
+clanFight 0 6 7 8
+addPlayer 762 851 1
+getMinClan
+clanFight 4 7 1 7
+clanFight -1 -1 -1 9
+getMinClan
 addClan 7
-clanFight 2 7 10 2
-addPlayer 77 355 -1
-addPlayer 977 816 -1
-clanFight 0 6 8 6
-getMinClan
-clanFight 8 3 2 6
-clanFight 0 8 4 9
+addPlayer 114 948 7
+addPlayer 710 479 3
+addClan 0
 addClan 3
+clanFight -1 5 10 0
+getMinClan
+addPlayer 226 74 6
+addPlayer 480 168 8
+addClan -1
+addPlayer 147 627 4
+addClan 6
+getMinClan
+clanFight 0 1 1 2
+addPlayer 311 605 6
+addClan 8
+addPlayer 93 6 7
+addClan -1
+addClan -1
+clanFight 1 6 2 4
+addPlayer 164 268 5
+addPlayer 58 412 -1
+clanFight 7 8 2 7
+getMinClan
+addClan 0
 addClan 4
 getMinClan
-addPlayer 86 419 -2
-clanFight 5 2 2 3
+clanFight 2 4 5 5
+clanFight 3 1 10 2
 getMinClan
-addClan 2
-clanFight 7 0 9 0
-addClan -1
-addPlayer 682 0 -2
-addClan -1
-addClan -2
-addClan 8
-getMinClan
-addClan -2
+clanFight 7 2 10 10
+addPlayer 366 38 4
 addClan 5
+addClan 4
 getMinClan
-addPlayer 171 950 0
-getMinClan
-getMinClan
+addPlayer 987 136 7
+addClan -2
+addClan 0
+clanFight 1 8 10 10
+clanFight -1 -1 0 2
+clanFight 3 1 8 9
+addClan 1
+clanFight 0 5 2 4
+clanFight 0 3 0 0
 addClan 1
 getMinClan
-clanFight 3 5 0 5
-clanFight -1 0 1 6
-clanFight 7 2 6 -1
-getMinClan
-clanFight 6 1 2 6
-addClan 0
-addPlayer 892 696 2
-clanFight 8 1 3 5
-addPlayer 55 349 -1
-clanFight 1 4 3 6
-clanFight 8 1 2 2
-addClan 8
-addClan -2
-addClan 2
-addPlayer 155 53 1
+clanFight 3 6 5 4
+clanFight 7 0 8 6
 getMinClan
 getMinClan
-addPlayer 934 830 2
+clanFight 0 -1 4 6
+addPlayer 210 83 7
 getMinClan
-addClan 3
-getMinClan
-addClan 8
-addPlayer 815 96 1
-addPlayer 607 195 2
-addPlayer 43 567 1
-addPlayer 825 486 6
-clanFight 2 5 2 -1
-addClan 3
-addPlayer 804 509 -1
-addPlayer 619 16 4
-clanFight 7 2 0 4
-getMinClan
-addPlayer 450 337 5
-addClan 0
-addClan 5
-addClan 5
-addPlayer 814 60 2
-addPlayer 913 693 8
-addClan 4
-getMinClan
-getMinClan
-addClan 3
-addPlayer 396 395 2
-addClan 5
-clanFight 8 5 3 10
-clanFight 1 6 2 7
-clanFight 0 7 6 5
-addClan 1
-addPlayer 491 134 7
-getMinClan
-addPlayer 760 432 -1
-clanFight 4 6 9 2
-getMinClan
-getMinClan
-addPlayer 450 285 1
-clanFight -1 8 0 10
-getMinClan
-clanFight 1 4 1 10
-addClan 4
-addPlayer 839 941 1
-clanFight 8 4 2 5
+clanFight 3 6 10 6
+clanFight 8 2 5 1
+addPlayer 271 506 1
+addPlayer 314 432 3
+addPlayer 351 828 4
+clanFight 7 -1 -1 5
+clanFight 4 8 7 6
 quit

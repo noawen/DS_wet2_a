@@ -35,6 +35,8 @@ public:
 
     heapNode* getClanInHeap();
 
+    void setConquered();
+
     bool isConquered();
 
     void setNumOfPlayers(int num);

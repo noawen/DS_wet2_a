@@ -111,7 +111,6 @@ void testHash(){
     Clan clan77 (77);
    clans.insert(clan77);
     clans.printHash();
-    int x=4;
     //clan1.getPalyersTree().insert(&x);
   //  int y=6;
 }
@@ -131,7 +130,20 @@ void testTree(){
 void testOasis(){
     int array[3]={1,2,3};
     Oasis oasis(3,array);
-    oasis.addClan(5);
+    oasis.addClan(4);
+
+    int answer;
+    oasis.getMinClan(&answer);
+    cout<<"the answer is: "<<answer<<endl;
+
+    oasis.addPlayer(11,100,1);
+    oasis.addPlayer(22,200,2);
+    oasis.addPlayer(111,1000,1);
+    oasis.addPlayer(222,900,2);
+    oasis.clanFight(1,2,1,2);
+
+    oasis.getMinClan(&answer);
+    cout<<"the answer is: "<<answer<<endl;
 }
 
 int main() {

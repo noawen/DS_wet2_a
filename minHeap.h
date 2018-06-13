@@ -8,6 +8,7 @@
 #include <iostream>
 #include <cstdlib>
 #include "clan.h"
+#include "math.h"
 
 
 using std::cout;
@@ -155,6 +156,8 @@ public:
     }
 
     void siftDown (heapNode* current){
+        if (!current)
+            return;
         if (!(current->getLeft()) && !(current->getRight())){       //has no sons
             return;
         }
@@ -206,50 +209,61 @@ public:
     }
 
     void insert(int data, Clan* clan){
-        root = insert(root, nullptr, data, clan, size+1, (size+1)%2);
+        int length = log2(size+1) + 1;
+        int first_length = length;
+        int bin[length];
+        int sizeOfHeap = size + 1;
+        while (sizeOfHeap != 0 && length >= 0) {
+            bin[length-1] = sizeOfHeap % 2;
+            sizeOfHeap = sizeOfHeap / 2;
+            length--;
+        }
+        root = insert(root, nullptr, data, clan, bin, first_length, 1);
     }
 
-    heapNode* insert(heapNode* current, heapNode* father, int data, Clan* clan, int size, int r){
-        if (size/2 == 0){                   //in case of root
+    heapNode* insert(heapNode* current, heapNode* father, int data, Clan* clan, int digits[], int length, int index) {
+        if (index == length) {
             try {
                 current = new heapNode(data, clan);
                 current->setFather(father);
                 clan->setClanInHeap(current);
-            } catch (std::bad_alloc &){
+            } catch (std::bad_alloc &) {
                 throw FAILURE_MIN_HEAP();
             }
             this->size++;
             return current;
-        }
-        size = size/2;
-        if (size == 1){
-            if (r == 0){
-                current->setLeft(insert(current->getLeft(), current, data, clan, size, r));
-            }else {
-                current->setRight(insert(current->getRight(), current, data, clan, size, r));
-            }
-            siftDown(current);
-            return current;
         } else {
-            if (size % 2 == 0) {
-                current->setLeft(insert(current->getLeft(), current, data, clan, size, r));
+            if (digits[index] == 0) {
+                current->setLeft(insert(current->getLeft(), current, data, clan, digits, length, ++index));
             } else {
-                current->setRight(insert(current->getRight(), current, data, clan, size, r));
+                current->setRight(insert(current->getRight(), current, data, clan, digits, length, ++index));
             }
             siftDown(current);
             return current;
         }
     }
+
+
 
     void delMin(){
         if (size == 0){
             throw FAILURE_MIN_HEAP();
         }
-        root = delMin(root, size, size%2);
+        int length = log2(size) + 1;
+        int first_length = length;
+        int bin[length];
+        int sizeOfHeap = size;
+        while (sizeOfHeap != 0 && length >= 0) {
+            bin[length-1] = sizeOfHeap % 2;
+            sizeOfHeap = sizeOfHeap / 2;
+            length--;
+        }
+        root = delMin(root, size, bin, first_length, 1);
     }
 
-    heapNode* delMin(heapNode* current, int size, int r){
-        if (size == 1){
+    heapNode* delMin(heapNode* current, int size, int digits[], int length, int index){
+
+        if (index == length) {
             this->root->getClan()->setClanInHeap(nullptr);      //this clan is not in the heap anymore
             this->root->setData(current->getData());
             this->root->setClan(current->getClan());
@@ -257,21 +271,11 @@ public:
             delete current;
             this->size--;
             return nullptr;
-        }
-        size = size/2;
-        if (size == 1){
-            if (r == 0){
-                current->setLeft(delMin(current->getLeft(), size, r));
-            }else {
-                current->setRight(delMin(current->getRight(), size, r));
-            }
-            siftDown(current);
-            return current;
         } else {
-            if (size % 2 == 0) {
-                current->setLeft(delMin(current->getLeft(), size, r));
+            if (digits[index] == 0) {
+                current->setLeft(delMin(current->getLeft(), size, digits, length, ++index));
             } else {
-                current->setRight(delMin(current->getRight(), size, r));
+                current->setRight(delMin(current->getRight(), size, digits, length, ++index));
             }
             siftDown(current);
             return current;

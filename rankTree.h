@@ -526,96 +526,27 @@ public:
             return findMin(current->getLeft());
     }
 
-    int returnBackInOrder(Node_r<T>* node, T* arr, int i) {
-        if (node == NULL) {
-            return i;
-        }
-        if (node->getRight() != NULL) {
-            i = returnBackInOrder(node->getRight(), arr, i);
-        }
-        arr[i] = node->getData();
-        //    cout<<arr[i]<<" , ";
-        i++;
-        if (node->getLeft() != NULL) {
-            i = returnBackInOrder(node->getLeft(), arr, i);
-        }
-        return i;
+
+
+
+
+
+
+    void select(int k, int* bigger){
+        selectRec(this->getRoot(), k, bigger);
     }
 
-    void printInOrder(Node_r<T> *node) {
-        if (node != NULL) {
-            if (node->getLeft() != NULL) {
-                printInOrder(node->getLeft());
-            }
-            cout << node->getData() << " ";
-            if (node->getRight() != NULL) {
-                printInOrder(node->getRight());
-            }
+    void selectRec(Node_r<T>* current ,int k, int* bigger){
+        if (!current){
+            return;
         }
-    }
-
-    void printBackInOrder(Node_r<T> *node) {
-        if (node != NULL) {
-            if (node->getRight() != NULL) {
-                printBackInOrder(node->getRight());
-            }
-            cout << node->getData() << " ";
-            if (node->getLeft() != NULL) {
-                printBackInOrder(node->getLeft());
-            }
-        }
-    }
-
-    int size(Node_r<T> *node) {
-        if (node == NULL)
-            return 0;
-        else return 1 + size(node->getLeft()) + size(node->getRight());
-    }
-
-
-    void merge(T* a, int na, T* b, int nb, T* c) {
-        compKey max;
-        int ia, ib, ic;
-        for (ia = ib = ic = 0; (ia < na) && (ib < nb); ic++) {
-            if (a[ia] != NULL && b[ib] != NULL && max(a[ia], b[ib]) < 0) {
-                c[ic] = a[ia];
-                ia++;
-            } else {
-                c[ic] = b[ib];
-                ib++;
-            }
-        }
-        for (; ia < na; ia++, ic++)
-            c[ic] = a[ia];
-        for (; ib < nb; ib++, ic++)
-            c[ic] = b[ib];
-    }
-
-    void printTreeToArray (Node_r<T>* current, T** arr, int *i){
-        if (current != NULL) {
-            if (current->getLeft() != NULL) {
-                printTreeToArray(current->getLeft(), arr, i);
-            }
-            arr[*i] = (current->getData());
-            ++(*i);
-            if (current->getRight() != NULL) {
-                printTreeToArray(current->getRight(), arr, i);
-            }
-        }
-    }
-
-    Node_r<T>* select(int k, int* bigger){
-        return selectRec(this->getRoot(), k, bigger);
-    }
-
-    Node_r<T>* selectRec(Node_r<T>* current ,int k, int* bigger){
         if (current->getLeft()->getContain() == k-1){
             (*bigger) += current->getScore() + current->getRight()->getScoreInTree();
-            return current;
+            return;
         } else{
             if (current->getLeft()->getContain() > k-1){
                 (*bigger) += current->getScore() + current->getRight()->getScoreInTree();
-                return selectRec(current->getLeft(), k, bigger);
+                selectRec(current->getLeft(), k, bigger);
             }else {
                 return selectRec(current->getRight(), k-current->getLeft()->getContain()-1, bigger);
             }

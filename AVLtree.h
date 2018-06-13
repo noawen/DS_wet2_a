@@ -133,12 +133,14 @@ public:
 template <class T, class compKey>
 class AvlTree {
     Node<T> *root;
+    int num_of_elements;
 
     Node<T> *insert(T *data, Node<T> *current) {
         compKey compare;
         if (current == nullptr) {
             try {
                 current = new Node<T>(data);
+                this->num_of_elements++;
             } catch (std::bad_alloc &) {
                 throw ALLOCATION_ERROR_TREE();
             }
@@ -170,6 +172,7 @@ class AvlTree {
 public:
     AvlTree() {
         this->root = nullptr;
+        this->num_of_elements = 0;
     }
 
     Node<T> *getRoot() {

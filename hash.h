@@ -108,6 +108,15 @@ public:
         throw ELEMENT_NOT_FOUND_HASH();
     }
 
+    bool contain (T data) {
+        for(typename List<T>::Iterator it = this->table[data % size].begin(); it != this->table[data % size].end(); it++){
+            if (it.operator*() == data){
+                return true;
+            }
+        }
+        return false;
+    }
+
     T* find_ptr(T data){
         for(typename List<T>::Iterator it = this->table[data % size].begin(); it != this->table[data % size].end(); it++){
             if (it.operator*() == data){

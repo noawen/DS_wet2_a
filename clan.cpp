@@ -32,10 +32,32 @@ void Clan::setPlayersTree(rankTree<Player , is_bigger_by_score_player>& tree) {
     this->players_tree = tree;
 }
 
+void Clan::setNumOfPlayers(){
+    if(!this)
+        return;
+    this->num_of_players++;
+}
+
+void Clan::setConquered(){
+    if (!this)
+        return;
+    this->conquer = true;
+}
+
 heapNode* Clan::getClanInHeap() {
     if (!this)
         return nullptr;
     return clanInHeap;
+}
+
+int Clan::getNumOfPlayers(){
+    if(!this)
+        return 0;
+    return this->num_of_players;
+}
+
+bool Clan::isConquered(){
+    return this->conquer;
 }
 
 rankTree<Player , is_bigger_by_score_player>& Clan ::getPlayersTree(){
